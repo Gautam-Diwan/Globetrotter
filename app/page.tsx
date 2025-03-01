@@ -37,6 +37,17 @@ export default function Home() {
     }
   };
 
+  const fetchNewGame = async () => {
+    // Reset scores first
+    setScore(0);
+    setCorrect(0);
+    setIncorrect(0);
+    
+    // Then set loading and fetch new game
+    setIsLoading(true);
+    fetchRandomGame();
+  }
+
   useEffect(() => {
     fetchRandomGame();
     
@@ -83,7 +94,7 @@ export default function Home() {
             <GlobeIcon className="h-6 w-6" />
             <h1 className="text-xl font-bold">Globetrotter Challenge</h1>
           </div>
-          <Button variant="outline" size="sm" onClick={fetchRandomGame} disabled={isLoading}>
+          <Button variant="outline" size="sm" onClick={fetchNewGame} disabled={isLoading}>
             <RefreshCw className="h-4 w-4 mr-2" />
             New Game
           </Button>
