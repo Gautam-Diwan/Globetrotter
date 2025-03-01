@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "local": "cross-env NODE_ENV=local next dev --turbopack",
+    "dev": "cross-env NODE_ENV=local next dev",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "local:seed": "cross-env NODE_ENV=local ts-node --project tsconfig.seed.json prisma/seed.ts",
+    "production:seed": "cross-env NODE_ENV=production ts-node --project tsconfig.seed.json prisma/seed.ts",
+    "seed": "cross-env NODE_ENV=local ts-node --project tsconfig.seed.json prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -76,6 +79,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
     "prisma": "^6.4.1",
     "ts-node": "^10.9.2"
   }
