@@ -3,16 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "local": "cross-env NODE_ENV=development next dev --turbopack",
-    "dev": "cross-env NODE_ENV=development next dev",
+    "local": "next dev --turbopack",
+    "dev": "next dev",
     "build": "prisma generate && next build",
-    "start": "cross-env NODE_ENV=production next start",
+    "start": "next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "local:seed": "cross-env NODE_ENV=development ts-node --project tsconfig.seed.json prisma/seed.ts",
-    "production:seed": "cross-env NODE_ENV=production ts-node --project tsconfig.seed.json prisma/seed.ts"
+    "seed": "ts-node --project tsconfig.seed.json prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

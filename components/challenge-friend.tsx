@@ -59,7 +59,7 @@ export function ChallengeFriend({ username, score, onUsernameChange }: Challenge
   };
   
   const getShareUrl = () => {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
+    const baseUrl = window.location.origin;
     return `${baseUrl}/challenge?username=${encodeURIComponent(username)}`;
   };
   

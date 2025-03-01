@@ -13,17 +13,29 @@ Globetrotter Challenge is a full-stack web application where users get cryptic c
 
 ## Tech Stack
 
-- **Frontend**: Next.js 13, React, TypeScript, Tailwind CSS, shadcn/ui
-- **Backend**: Next.js API Routes
-- **Database**: PostgreSQL with Prisma ORM
+- **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend**: Next.js API Routes with route handlers
+- **Database**: Supabase PostgreSQL with Prisma ORM
 - **Animations**: canvas-confetti for celebration animations
 - **Image Generation**: html-to-image for challenge sharing
+- **Deployment**: Vercel with serverless functions
+
+## Architecture
+
+The application follows a modern full-stack architecture:
+
+- **App Router**: Next.js 15 App Router for server-side rendering and client components
+- **Server Components**: Leveraging React Server Components for better performance
+- **API Layer**: Next.js route handlers for backend API endpoints
+- **Database Layer**: Prisma ORM for type-safe database access
+- **Authentication**: Stateless session management
+- **UI Components**: Modular, reusable components built with shadcn/ui and Tailwind CSS
 
 ## Setup Instructions
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v20 or higher)
 - PostgreSQL database
 
 ### Installation
@@ -43,6 +55,7 @@ Globetrotter Challenge is a full-stack web application where users get cryptic c
    Create a `.env` file in the root directory with the following:
    ```
    DATABASE_URL="postgresql://username:password@localhost:5432/globetrotter?schema=public"
+   DIRECT_URL="postgresql://username:password@localhost:5432/globetrotter?schema=public"
    NEXT_PUBLIC_APP_URL="http://localhost:3000"
    ```
 
@@ -61,10 +74,11 @@ Globetrotter Challenge is a full-stack web application where users get cryptic c
 
 ## Project Structure
 
-- `/app` - Next.js app router pages and API routes
-- `/components` - React components
-- `/lib` - Utility functions and types
+- `/app` - Next.js app router pages, layouts, and API route handlers
+- `/components` - Reusable React components
+- `/lib` - Utility functions, data fetching, and types
 - `/prisma` - Prisma schema and migrations
+- `/hooks` - Custom React hooks for state management and side effects
 
 ## API Endpoints
 
@@ -76,15 +90,23 @@ Globetrotter Challenge is a full-stack web application where users get cryptic c
 
 ## Database Schema
 
-- `Destination` - Information about travel destinations
-- `Clue` - Cryptic clues for destinations
+The application uses a PostgreSQL database with the following models:
+
+![Database Schema](./schema.png)
+
+- `Destination` - Information about travel destinations (name, country, continent)
+- `Clue` - Cryptic clues for destinations with difficulty levels
 - `Fact` - Fun facts and trivia about destinations
-- `User` - User information and scores
-- `Game` - Game session information
+- `User` - User information and overall scores
+- `Game` - Game session information tracking correct/incorrect answers
 
 ## Deployment
 
-This application can be deployed on Vercel, Netlify, or any other platform that supports Next.js applications.
+This application is deployed on Vercel, taking advantage of:
+
+- Vercel Postgres for the database
+- Vercel Edge Functions for API routes
+- Vercel CDN for static assets and caching
 
 ## License
 
