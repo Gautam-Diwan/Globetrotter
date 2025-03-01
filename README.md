@@ -64,13 +64,14 @@ The application follows a modern full-stack architecture:
 
 4. Set up the database:
    ```
-   npx prisma migrate dev --name init
+   npm prisma generate
+   npm prisma migrate
    npm run seed
    ```
 
 5. Start the development server:
    ```
-   npm run dev
+   npm run local
    ```
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -107,7 +108,6 @@ The application uses a PostgreSQL database with the following models:
 
 This application is deployed on Vercel, taking advantage of:
 
-- Vercel Postgres for the database
 - Vercel Edge Functions for API routes
 - Vercel CDN for static assets and caching
 
