@@ -83,7 +83,7 @@ export function GameCard({ clues, options, destinationId, onAnswer, onNextQuesti
           <ul className="space-y-2">
             {clues.map((clue) => (
               <li key={clue.id} className="p-3 bg-secondary rounded-md">
-                {clue.text}
+                <span className="font-bold">{clue.difficulty}: </span>{clue.text}
               </li>
             ))}
           </ul>
@@ -120,7 +120,7 @@ export function GameCard({ clues, options, destinationId, onAnswer, onNextQuesti
             {fact && (
               <div className="p-4 bg-secondary rounded-md">
                 <h4 className="font-medium mb-1">Fun Fact:</h4>
-                <p>{fact.text}</p>
+                <p>{fact.text} {fact.isFunny && <span className="text-green-500">😂</span>}</p>
               </div>
             )}
           </div>

@@ -2,6 +2,10 @@
 
 Globetrotter Challenge is a full-stack web application where users get cryptic clues about famous places and must guess which destination they refer to. Once they guess, they'll unlock fun facts and trivia about the destination!
 
+## Live Demo
+
+Try the app: [Globetrotter Challenge](https://globetrotter-sandy.vercel.app/)
+
 ## Features
 
 - Random destination selection with cryptic clues
@@ -15,7 +19,7 @@ Globetrotter Challenge is a full-stack web application where users get cryptic c
 
 - **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS, shadcn/ui
 - **Backend**: Next.js API Routes with route handlers
-- **Database**: Supabase PostgreSQL with Prisma ORM
+- **Database**: Supabase PostgreSQL 16 with Prisma ORM
 - **Animations**: canvas-confetti for celebration animations
 - **Image Generation**: html-to-image for challenge sharing
 - **Deployment**: Vercel with serverless functions
@@ -36,19 +40,18 @@ The application follows a modern full-stack architecture:
 ### Prerequisites
 
 - Node.js (v20 or higher)
-- PostgreSQL database
+- PostgreSQL database [v16 or higher]
 
 ### Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/globetrotter-challenge.git
-   cd globetrotter-challenge
+   git clone git@github.com:Gautam-Diwan/Globetrotter.git
    ```
 
 2. Install dependencies:
    ```
-   npm install
+   npm i
    ```
 
 3. Set up your environment variables:

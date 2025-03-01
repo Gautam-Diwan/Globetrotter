@@ -33,10 +33,7 @@ export async function GET() {
     const options = generateOptions(selectedDestination, allDestinations);
     
     return NextResponse.json({
-      destination: {
-        id: selectedDestination.id,
-        name: selectedDestination.name,
-      },
+      destination: selectedDestination,
       clues: selectedClues,
       options: options,
     });
