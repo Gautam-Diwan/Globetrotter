@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { GameCard } from '@/components/game-card';
 import { ScoreDisplay } from '@/components/score-display';
@@ -10,7 +10,8 @@ import { Destination, Clue, Fact } from '@/lib/types';
 import { GlobeIcon, RefreshCw, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-export default function ChallengePage() {
+// Client component that uses useSearchParams
+function ChallengeContent() {
   const searchParams = useSearchParams();
   const challengeUsername = searchParams.get('username');
   
@@ -91,7 +92,7 @@ export default function ChallengePage() {
         {challengeUsername && (
           <div className="mb-8 p-4 bg-secondary rounded-lg">
             <h2 className="text-xl font-bold mb-2">
-              You've been challenged by {challengeUsername}!
+              You&apos;ve been challenged by {challengeUsername}!
             </h2>
             <p className="text-muted-foreground">
               Their score: <span className="font-bold">{challengerScore}</span>. Can you beat it?
@@ -142,11 +143,11 @@ export default function ChallengePage() {
                   <h3 className="font-medium mb-2">Challenge Status:</h3>
                   {score > challengerScore ? (
                     <p className="text-green-500 font-bold">
-                      You're winning! Keep going!
+                      You&apos;re winning! Keep going!
                     </p>
                   ) : score === challengerScore ? (
                     <p className="text-yellow-500 font-bold">
-                      You're tied! One more correct answer to win!
+                      You&apos;re tied! One more correct answer to win!
                     </p>
                   ) : (
                     <p className="text-muted-foreground">
@@ -160,5 +161,18 @@ export default function ChallengePage() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function ChallengePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <ChallengeContent />
+    </Suspense>
   );
 }

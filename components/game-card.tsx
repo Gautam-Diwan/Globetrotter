@@ -112,7 +112,7 @@ export function GameCard({ clues, options, destinationId, onAnswer, onNextQuesti
               ) : (
                 <>
                   <XCircle className="h-6 w-6 text-red-500" />
-                  <h3 className="text-lg font-medium text-red-500">Incorrect!</h3>
+                  <h3 className="text-lg font-medium text-red-500">😢 Incorrect!</h3>
                 </>
               )}
             </div>

@@ -16,7 +16,10 @@ export async function POST(request: Request) {
     // Get the correct destination
     const destination = await prisma.destination.findUnique({
       where: { id: destinationId },
-      include: { facts: true },
+      include: { 
+        facts: true,
+        clues: true 
+      },
     });
     
     if (!destination) {
@@ -35,21 +38,30 @@ export async function POST(request: Request) {
     // Update user score if userId is provided
     let user = null;
     if (userId) {
+      // First, update the user's score
       user = await prisma.user.update({
         where: { id: userId },
         data: {
           score: { increment: isCorrect ? 1 : 0 },
-          games: {
-            update: {
-              where: { userId },
-              data: {
-                score: { increment: isCorrect ? 1 : 0 },
-                correct: { increment: isCorrect ? 1 : 0 },
-                incorrect: { increment: isCorrect ? 0 : 1 },
-              },
-            },
-          },
         },
+      });
+      
+      // Then separately update or create a game for this user
+      await prisma.game.upsert({
+        where: { 
+          id: userId // Assuming game ID is the same as user ID
+        },
+        create: {
+          userId,
+          score: isCorrect ? 1 : 0,
+          correct: isCorrect ? 1 : 0,
+          incorrect: isCorrect ? 0 : 1
+        },
+        update: {
+          score: { increment: isCorrect ? 1 : 0 },
+          correct: { increment: isCorrect ? 1 : 0 },
+          incorrect: { increment: isCorrect ? 0 : 1 }
+        }
       });
     }
     

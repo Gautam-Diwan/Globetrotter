@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "local": "cross-env NODE_ENV=local next dev --turbopack",
-    "dev": "cross-env NODE_ENV=local next dev",
+    "local": "cross-env NODE_ENV=development next dev --turbopack",
+    "dev": "cross-env NODE_ENV=development next dev",
     "build": "prisma generate && next build",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "local:seed": "cross-env NODE_ENV=local ts-node --project tsconfig.seed.json prisma/seed.ts",
-    "production:seed": "cross-env NODE_ENV=production ts-node --project tsconfig.seed.json prisma/seed.ts",
-    "seed": "cross-env NODE_ENV=local ts-node --project tsconfig.seed.json prisma/seed.ts"
+    "local:seed": "cross-env NODE_ENV=development ts-node --project tsconfig.seed.json prisma/seed.ts",
+    "production:seed": "cross-env NODE_ENV=production ts-node --project tsconfig.seed.json prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -79,6 +78,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "prisma": "^6.4.1",
