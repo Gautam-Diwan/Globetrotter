@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as dotenv from 'dotenv';
 import { resolve } from 'path';
 import { existsSync } from 'fs';
